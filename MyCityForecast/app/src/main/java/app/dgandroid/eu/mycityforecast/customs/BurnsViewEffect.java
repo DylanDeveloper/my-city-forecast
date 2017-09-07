@@ -21,23 +21,25 @@ import app.dgandroid.eu.mycityforecast.R;
 
 public class BurnsViewEffect extends FrameLayout {
 
-    private static final int NUM_OF_IMAGE_VIEWS = 3;
-    private static final int FIRST_IMAGE_VIEW_INDEX = 0;
-    private static final int SECOND_IMAGE_VIEW_INDEX = 1;
-    private static final int THIRD_IMAGE_VIEW_INDEX = 2;
-    private static final String PROPERTY_ALPHA = "alpha";
+    private static final int NUM_OF_IMAGE_VIEWS         = 3;
+    private static final int FIRST_IMAGE_VIEW_INDEX     = 0;
+    private static final int SECOND_IMAGE_VIEW_INDEX    = 1;
+    private static final int THIRD_IMAGE_VIEW_INDEX     = 2;
+    private static final String PROPERTY_ALPHA          = "alpha";
     private final Handler mHandler;
     private Context mContext;
     private ImageView[] mImageViews;
     private FrameLayout mRootLayout;
     private final Random mRandom = new Random();
-    private int mSwapMs = 5500;
-    private int mFadeInOutMs = 500;
-    private float mMaxScaleFactor = 1.5F;
-    private float mMinScaleFactor = 1.0F;
-    private int mPosition = 0;
-    private int mPreviousPosition = 0;
-    private int mActiveImageIndex = -1;
+
+    private int mSwapMs             = 5500;
+    private int mFadeInOutMs        = 500;
+    private float mMaxScaleFactor   = 1.5F;
+    private float mMinScaleFactor   = 1.0F;
+    private int mPosition           = 0;
+    private int mPreviousPosition   = 0;
+    private int mActiveImageIndex   = -1;
+
     private List<Integer> mResourceIDs;
     private LoopViewPager mLoopViewPager;
     private ImageView.ScaleType mScaleType = null;
@@ -63,15 +65,6 @@ public class BurnsViewEffect extends FrameLayout {
 
     public void setPager(LoopViewPager mPager) {
         this.mLoopViewPager = mPager;
-    }
-
-    public void forceSelected(int position) {
-        mPreviousPosition = mPosition;
-        if (mHandler != null) {
-            stopKenBurnsAnimation();
-            startForceKenBurnsAnimation();
-        }
-        mPosition = position;
     }
 
     private void forceSwapImage() {
@@ -257,10 +250,6 @@ public class BurnsViewEffect extends FrameLayout {
 
     private void startKenBurnsAnimation() {
         mHandler.post(mSwapImageRunnable);
-    }
-
-    private void startForceKenBurnsAnimation() {
-        mHandler.post(mForceSwapImageRunnable);
     }
 
     @Override

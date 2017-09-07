@@ -36,9 +36,9 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         int day                     = (int)days.get(position).getTemperatures().getDay();
         int eve                     = (int)days.get(position).getTemperatures().getEve();
         int nght                    = (int)days.get(position).getTemperatures().getNight();
-        String dateDayNumber        = Utility.getTypeDateUnit(days.get(position).getDt(),   Utility.DAY_NUMBER);
-        String dateDayText          = Utility.getTypeDateUnit(days.get(position).getDt(),   Utility.DAY_TEXT);
-        String dateMonthNumber      = Utility.getTypeDateUnit(days.get(position).getDt(),   Utility.MONTH_NUMBER);
+        String dateDayNumber        = Utility.getTypeDateUnit(days.get(position).getDt(), Utility.DAY_NUMBER);
+        String dateDayText          = Utility.getTypeDateUnit(days.get(position).getDt(), Utility.DAY_TEXT);
+        String dateMonthNumber      = Utility.getTypeDateUnit(days.get(position).getDt(), Utility.MONTH_NUMBER);
         holder.dayNumber.setText(dateDayNumber+"/"+dateMonthNumber);
         holder.dayName.setText(dateDayText);
         holder.tempMorn.setText     (morn   + "°");
@@ -55,14 +55,14 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
     }
 
     public static class WeatherViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.main)        TextView main;
-        @BindView(R.id.icon)        ImageView icon;
-        @BindView(R.id.temp_morn)   TextView tempMorn;
-        @BindView(R.id.temp_day)    TextView tempDay;
-        @BindView(R.id.temp_eve)    TextView tempEve;
-        @BindView(R.id.temp_night)  TextView tempNight;
-        @BindView(R.id.dayNumber)   TextView dayNumber;
-        @BindView(R.id.dayName)     TextView dayName;
+        @BindView(R.id.main)        TextView    main;
+        @BindView(R.id.icon)        ImageView   icon;
+        @BindView(R.id.temp_morn)   TextView    tempMorn;
+        @BindView(R.id.temp_day)    TextView    tempDay;
+        @BindView(R.id.temp_eve)    TextView    tempEve;
+        @BindView(R.id.temp_night)  TextView    tempNight;
+        @BindView(R.id.dayNumber)   TextView    dayNumber;
+        @BindView(R.id.dayName)     TextView    dayName;
 
         public WeatherViewHolder(View itemView) {
             super(itemView);
@@ -74,5 +74,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         this.days       = days;
         this.rowLayout  = rowLayout;
         this.context    = context;
+    }
+
+    public void onUpdate(List<Day> days){
+        this.days.clear();
+        this.days = days;
+        notifyDataSetChanged();
     }
 }

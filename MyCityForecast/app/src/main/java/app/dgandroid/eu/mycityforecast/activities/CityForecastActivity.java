@@ -36,6 +36,7 @@ public class CityForecastActivity extends AppCompatActivity {
     private ActionCall actionCall;
     private String cityName;
     private Context context;
+    private WeatherAdapter weatherAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,8 @@ public class CityForecastActivity extends AppCompatActivity {
         cityNameTv.setText("7 Days Weather in " + cityName);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new WeatherAdapter(days, R.layout.list_item, getApplicationContext()));
+        weatherAdapter = new WeatherAdapter(days, R.layout.list_item, this);
+        recyclerView.setAdapter(weatherAdapter);
 
         refresh.setOnRefreshListener(this::fetchTimelineAsync);
     }
@@ -62,9 +64,8 @@ public class CityForecastActivity extends AppCompatActivity {
             @Override
             public void onSuccess(WeatherResponse weatherResponse) {
                 days = weatherResponse.getListDays();
-                recyclerView.setAdapter(new WeatherAdapter(days, R.layout.list_item, context));
+                weatherAdapter.onUpdate(days);
                 refresh.setRefreshing(false);
-
             }
             @Override
             public void onFailure(Object t) {

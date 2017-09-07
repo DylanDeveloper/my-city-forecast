@@ -143,8 +143,8 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:background="@drawable/ic_drop_cloud"
         android:backgroundTint="@color/white_100"
         app:layout_constraintBottom_toBottomOf="parent"
