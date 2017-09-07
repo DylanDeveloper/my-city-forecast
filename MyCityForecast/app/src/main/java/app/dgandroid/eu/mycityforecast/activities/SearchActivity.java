@@ -28,9 +28,10 @@ import butterknife.ButterKnife;
 
 public class SearchActivity extends AppCompatActivity {
 
-    @BindView(R.id.searchBtn)       Button searchButton;
-    @BindView(R.id.cityText)        EditText cityText;
-    @BindView(R.id.ken_burns_view)  BurnsViewEffect burnsViewEffect;
+    @BindView(R.id.searchBtn)           Button searchButton;
+    @BindView(R.id.cityText)            EditText cityText;
+    @BindView(R.id.ken_burns_view)      BurnsViewEffect burnsViewEffect;
+    @BindView(R.id.view_pager_frame)    FrameLayout viewPagerFrame;
 
     private ActionCall actionCall;
     private Context context;
@@ -74,7 +75,6 @@ public class SearchActivity extends AppCompatActivity {
         List<Integer> resourceIDs = Arrays.asList(Utility.IMAGES_RESOURCE);
         burnsViewEffect.loadResourceIDs(resourceIDs);
         LoopViewPager loopViewPager = new LoopViewPager(this, resourceIDs.size());
-        FrameLayout viewPagerFrame = (FrameLayout) findViewById(R.id.view_pager_frame);
         viewPagerFrame.addView(loopViewPager);
         burnsViewEffect.setPager(loopViewPager);
     }
